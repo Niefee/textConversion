@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>文字转换</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style media="screen">
+            body{
+                margin:0;
+                padding: 0;
+                overflow: hidden;
+            }
+            html,body{
+                height: 100%;
+                width: 100%;
+            }
+            #message{
+                height: 100px;
+                display: block;
+                resize: vertical;
+                padding: 10px;
+                font-size: 14px;
+                box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+                outline: none;
+                border-color: white;
+                width: 100%;
+                box-sizing: border-box;
+                max-width: 400px;
+                margin: 0 auto;
+                color: #F57F17;
+            }
+            #title{
+                text-align: center;
+                padding-top: 50px;
+                font-size: 18px;
+                letter-spacing: 2px;
+                color: #F44336;
+                margin: 0;
+                margin-bottom: 20px;
+            }
+            #toJian,#toFan,#toHuo{
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+                max-width: 400px;
+                margin: 0 auto;
+                margin-top: 20px;
+                padding: 0 10px;
+            }
+            #toJian h2,#toFan h2,#toHuo h2{
+                font-size: 16px;
+                margin: 0px;
+                color: #FB8C00;
+            }
+            #toJian p ,#toFan p ,#toHuo p{
+                min-height: 25px;
+                margin: 0;
+                font-size: 14px;
+            }
+            .textarea{
+                padding: 0 10px;
+            }
+            .setBg{
+                background-image: url(./bd3.jpg);
+                background-size: cover;
+                height: 100%;
+                position: absolute;
+                top: 0px;
+                bottom: 0px;
+                width: 100%;
+                z-index: -1;
+                opacity: 0.07;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="setBg">
+        </div>
+            <div class="">
+                <h3 id='title'>简体字转换繁体字、火星文</h3>
+            </div>
+            <div class="bd">
+                <div class="textarea">
+                    <textarea id="message" name="message" placeholder="Enter your content">我临睡前想做件大事改变世界激动得睡不着，第二天早上连早起都做不到。</textarea>
+                </div>
+                <div class="show">
+                    <div id="toJian">
+                        <h2>简体字</h2>
+                        <p id='toJian_cont'></p>
+                    </div>
+                    <div id="toFan">
+                        <h2>繁体字</h2>
+                        <p id="toFan_cont"></p>
+                    </div>
+                    <div id="toHuo">
+                        <h2>火星文</h2>
+                        <p id="toHuo_cont"></p>
+                    </div>
+                </div>
+            </div>
+        <script type="text/javascript" src='./a.js'></script>
+        <script type="text/javascript">
+                var message=document.getElementById('message');
+                var toJian_cont=document.getElementById('toJian_cont');
+                var toFan_cont=document.getElementById('toFan_cont');
+                var toHuo_cont=document.getElementById('toHuo_cont');
+                var idx=true;
+                toJian_cont.innerHTML=toZh(message.value);
+                toFan_cont.innerHTML=toCht(message.value);
+                toHuo_cont.innerHTML=toHx(message.value);
+
+                message.onfocus=function () {
+                    if (idx) {
+                        idx=false;
+                        message.value="";
+                        toJian_cont.innerHTML='';
+                        toFan_cont.innerHTML='';
+                        toHuo_cont.innerHTML='';
+                    }
+                }
+
+                message.oninput=function(){
+                     toJian_cont.innerHTML=toZh(message.value);
+                     toFan_cont.innerHTML=toCht(message.value);
+                     toHuo_cont.innerHTML=toHx(message.value);
+                 }
+        </script>
+    </body>
+</html>
